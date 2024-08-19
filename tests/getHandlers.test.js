@@ -1,5 +1,6 @@
 
-const config = require('../config');
+
+const config = require("../config");
 
 test('status should be 200', async () => {
     let actualStatus;
