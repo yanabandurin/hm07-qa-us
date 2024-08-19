@@ -39,16 +39,10 @@ test('Adding products', async () => {
 
 
 
-	const requestBody= {
-			"productsList": [
-				{
-					"id": 6,
-					"quantity": 2
-				}
-			]
-		}
+
 	
 		test('response status should be 200', async () => {
+			let actualStatus;
      try {
          const response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
              method: 'POST',

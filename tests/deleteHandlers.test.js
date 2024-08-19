@@ -6,6 +6,8 @@ test('Delete kits', async () => {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
 			method: 'DELETE',
 		});
+		const data = await response.json();
+		console.log(data);
 	} catch (error) {
 		console.error(error);
 	}

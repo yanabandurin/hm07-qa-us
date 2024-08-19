@@ -1,13 +1,4 @@
-// eslint-disable-next-line no-undef
-// const config = require('../config');
 
-// test('', async () => {
-// 	try {
-// 		const response = await fetch(`${config.API_URL}/your/endpoint`);
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
-// });
 const config = require('../config');
 
 test('status should be 200', async () => {
@@ -16,7 +7,7 @@ test('status should be 200', async () => {
         // Make request
         const response = await fetch(`${config.API_URL}/api/v1/warehouses`);
         // Extract response code status
-        actualStatus = response.status;
+        actualStatus = await response.status;
     } catch (error) {
         console.error(error);
     }
@@ -36,7 +27,7 @@ test('Body should contain the name "For movies and series" in GET', async () => 
             }
         });
 
-        actualStatus = response.status;
+        actualStatus = await response.status;
         actualResponseBody = await response.json();
     } catch (error) {
         console.error(error);
