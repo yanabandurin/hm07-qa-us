@@ -1,37 +1,49 @@
-// eslint-disable-next-line no-undef
 const config = require('../config');
 
-test('Delete kits', async () => {
-    try {
+test('Should delete kits', async () => {
+	const requestBody = {
+		"products": [
+			{
+				"id": 5,
+				"quantity": 1
+			},
+			{
+				"id": 4,
+				"quantity": 5
+			}
+		]
+	};
+	let actualStatus;
+	try {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
 			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(requestBody)
 		});
-		const data = await response.json();
-		console.log(data);
+        actualStatus = await response.status;
 	} catch (error) {
-		console.error(error);
+		console.error('Error:', error);
 	}
+	
+	expect(actualStatus).toBe(200);
 });
 
 
 test('response status should be 200', async () => {
 	let actualStatus;
 	try {
-        // Make DELETE request
         const response = await fetch(`${config.API_URL}/api/v1/kits/7`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-
-        // Save the response status
-        actualStatus = response.status;
+ actualStatus = response.status;
 
     } catch (error) {
         console.error(error);
     }
-
-    // Check the response status code
     expect(actualStatus).toBe(200);
 });

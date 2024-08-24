@@ -1,50 +1,40 @@
-// eslint-disable-next-line no-undef
 const config = require('../config');
 
-test('Adding products', async () => {
+test('Should Add products', async () => {
 	const requestBody = {
-		"products": [
+		"productsList": [
 			{
-				"id": 10,
+				"id": 7,
 				"quantity": 1
 			},
 			{
-				"id": 11,
-				"quantity": 3
+				"id": 8,
+				"quantity": 1
 			}
 		]
-		
 	}
+	let data;
 	try {
-		// Use the fetch method to send a POST request to the specified URL and wait for the response
-		const response = await fetch(`${config.API_URL}/api/v1/warehouses/check`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/2/products`, {
 			method: 'POST',
-			// Set headers
 			headers: {
 			'Content-Type': 'application/json'
 			},
-			// Set request body and convert the data object into a JSON string
 			body: JSON.stringify(requestBody)
 		});
-		const data = await response.json();
-		console.log(data);
+		 data = await response.json();
 	} catch (error) {
 		console.error(error);
 	}
 	
-});
+	expect(data.name).toBe('For movies and series');
+	});
 
 
-
-
-
-
-
-	
-		test('response status should be 200', async () => {
+test('response status should be 200', async () => {
 			let actualStatus;
      try {
-         const response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
+         const response = await fetch(`${config.API_URL}/api/v1/kits/2/products`, {
              method: 'POST',
              headers: {
              'Content-Type': 'application/json'

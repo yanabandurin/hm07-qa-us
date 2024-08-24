@@ -1,34 +1,37 @@
-// eslint-disable-next-line no-undef
 const config = require('../config');
-test('PUT request should return status 200', async () => {
+test('Should update the quantity', async () => {
 	const requestBody = {
-		price: 200
-	};
+		"name": "For movies and series",
+		"productsList": [
+			{
+				"id": 7,
+				"quantity": 4
+			},
+			
+		]
+	}
+	let actualStatus;
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/products/7`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(requestBody)
 		});
-
-		const data = await response.json();
-		console.log(data);
-
-	
-
+		actualStatus = await response.status;
+		
 	} catch (error) {
 		console.error('Fetch Error:', error);
 	}
-
+	expect(actualStatus).toBe(200);
 });
 
 
 test('PUT request should return status 200', async () => {
 	let actualStatus;
 	try{
-		const response = await fetch(`${config.API_URL}/api/v1/products/7`, {
+		const response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
